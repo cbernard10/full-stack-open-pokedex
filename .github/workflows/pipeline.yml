@@ -44,7 +44,7 @@ jobs:
         with:
           severity: info
           description: "Build succeeded!"
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
           color: #00ff00
 
       - name: Build failure
@@ -53,7 +53,7 @@ jobs:
         with:
           severity: error
           description: "Build failed!"
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
           color: #ff0000
 
       - name: Build cancelled
@@ -62,7 +62,7 @@ jobs:
         with:
           severity: warning
           description: "Build cancelled!"
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
           color: #ffff00
 
   tag_release:
