@@ -56,6 +56,15 @@ jobs:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
           color: #ff0000
 
+      - name: Build cancelled
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: cancelled()
+        with:
+          severity: warning
+          description: "Build cancelled!"
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          color: #ffff00
+
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
