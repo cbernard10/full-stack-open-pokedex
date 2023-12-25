@@ -38,6 +38,24 @@ jobs:
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
+      - name: Deploy success
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: success()
+        with:
+          severity: info
+          description: "Build succeeded!"
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          color: #00ff00
+
+      - name: Build failure
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: failure()
+        with:
+          severity: error
+          description: "Build failed!"
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          color: #ff0000
+
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
